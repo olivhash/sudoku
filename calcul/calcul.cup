@@ -1,0 +1,56 @@
+// $Id: calcul.cup 505 2017-09-25 12:44:47Z coelho $
+
+import java_cup.runtime.*;
+import java.util.*;
+import java.io.*;
+
+parser code {:
+  public static void main(String args[]) throws Exception {
+    new Parser(new Lexer(new InputStreamReader(System.in))).parse();
+  }
+:}
+
+// definition des token
+terminal TK_PLUS, TK_MULT, TK_DIV, TK_MINUS, TK_POW, TK_DONE, TK_LPAREN, TK_RPAREN;
+terminal Double TK_VAL;
+
+// definition des etats intermediaires
+non terminal commandes, commande;
+non terminal Double expression;
+
+// associativite et priorite des operateurs
+precedence left TK_MINUS, TK_PLUS;
+precedence left TK_MULT, TK_DIV;
+precedence left TK_POW;
+precedence nonassoc TK_LPAREN, TK_RPAREN;
+
+// objectif
+start with commandes;
+
+commandes ::=
+    commande
+  | commandes commande
+;
+
+commande ::=
+    expression:e // expression seule, affichage
+	{: System.out.println("# " + e); :}
+    TK_DONE
+;
+
+expression ::=
+    expression:e1 TK_PLUS expression:e2 // effectue l'addition
+	{: RESULT = e1 + e2 ; :}
+  | expression:e1 TK_MULT expression:e2 // effectue la multiplication
+	{: RESULT = e1 * e2 ; :}
+  | expression:e1 TK_MINUS expression:e2 // effectue la soustraction
+	{: RESULT = e1 - e2 ; :}
+  | expression:e1 TK_DIV expression:e2 // effectue la division
+	{: RESULT = e1 / e2 ; :}
+  | expression:e1 TK_POW expression:e2 // effectue la puissance
+	{: RESULT = Math.pow(e1,e2) ; :}
+  | TK_LPAREN expression:e TK_RPAREN // les parenthèses
+	{: RESULT = e ; :}
+  | TK_VAL:v // valeur
+	{: RESULT = v; :}
+;
