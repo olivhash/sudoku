@@ -9,8 +9,8 @@ public class Tricolore {
 		System.out.println(tmp);
 	}
 	public static int fois(double x, double y) {
-		int txxxxxssmp = 3;
-		return txxxxxssmp;
+		int txxxxssmp = 3;
+		return txxxxssmp;
 	}
 }
 
