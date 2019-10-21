@@ -4,7 +4,7 @@ enum CouleurFeu {
 
 public class Tricolore {
 	public static void main(String[] args) {
-		int tmp = 1;
+		int tmp = 12;
 		System.out.println(fois(2,3));
 		System.out.println(tmp);
 	}
