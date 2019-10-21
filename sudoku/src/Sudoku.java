@@ -101,10 +101,11 @@ class Grille {
 		if (grille[cCour.getLigne()][cCour.getColonne()] == 0) { // case vide
 			int n;
 			for (n = 1; n < 10; n++) { // on essaie tout
-				if ((inserableLigne(cCour, n) == 1) && (inserableColonne(cCour, n) == 1)
+				if ((inserableLigne(cCour, n) == 1) 
+						&& (inserableColonne(cCour, n) == 1)
 						&& (inserableCarre(cCour, n) == 1)) {
 					grille[cCour.getLigne()][cCour.getColonne()] = n;
-					afficheGrille();
+					// afficheGrille();
 					if (resolution(cCour.suivante())) // gagné !
 						return true;
 				}
@@ -136,9 +137,17 @@ class Grille {
 public class Sudoku {
 
 	public static void main(String[] args) {
-		int[][] grille = { { 1, 0, 0, 4, 0, 0, 3, 7, 0 }, { 2, 0, 0, 6, 0, 0, 0, 0, 9 }, { 0, 0, 0, 0, 8, 0, 0, 0, 0 },
-				{ 0, 4, 0, 0, 9, 0, 0, 3, 0 }, { 0, 2, 1, 0, 0, 0, 5, 8, 0 }, { 0, 6, 0, 0, 5, 0, 0, 1, 0 },
-				{ 0, 0, 0, 0, 4, 0, 0, 0, 0 }, { 6, 0, 0, 0, 0, 7, 0, 0, 5 }, { 0, 3, 9, 0, 0, 6, 0, 0, 8 } };
+		int[][] grille = { 
+				{ 1, 0, 0, 4, 0, 0, 3, 7, 0 }, 
+				{ 2, 0, 0, 6, 0, 0, 0, 0, 9 }, 
+				{ 0, 0, 0, 0, 8, 0, 0, 0, 0 },
+				{ 0, 4, 0, 0, 9, 0, 0, 3, 0 },
+				{ 0, 2, 1, 0, 0, 0, 5, 8, 0 },
+				{ 0, 6, 0, 0, 5, 0, 0, 1, 0 },
+				{ 0, 0, 0, 0, 4, 0, 0, 0, 0 },
+				{ 6, 0, 0, 0, 0, 7, 0, 0, 5 }, 
+				{ 0, 3, 9, 0, 0, 6, 0, 0, 8 } };
+		
 		Grille s = new Grille(grille);
 		s.jouer();
 	}
