@@ -3,14 +3,6 @@ class Case {
 	private int ligne;
 	private int colonne;
 
-	public int getLigne() {
-		return ligne;
-	}
-
-	public int getColonne() {
-		return colonne;
-	}
-
 	Case(int l, int c) {
 		this.ligne = l;
 		this.colonne = c;
@@ -19,6 +11,16 @@ class Case {
 	Case() {
 		this(0, 0);
 	}
+
+
+	public int getLigne() {
+		return ligne;
+	}
+
+	public int getColonne() {
+		return colonne;
+	}
+
 
 	/* Suivante(8,8) est (9,0) */
 	Case suivante() {
